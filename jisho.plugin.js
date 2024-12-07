@@ -2,7 +2,7 @@
  * @name Jisho
  * @author Hitokii
  * @description Use Jisho.org ang google translate into discord
- * @version 0.2.0
+ * @version 0.2.1
  */
 
 let react = BdApi.React
@@ -11,7 +11,7 @@ let react = BdApi.React
 module.exports = class JishoPlugin {
     start() {
         console.clear()
-        const toolbar = document.querySelector(".toolbar-3_r2xA")
+        const toolbar = document.querySelector(".toolbar_fc4f04")
         const messagemenu = document.querySelectorAll("div[aria-label='Actions des messages']")
         const myButton = document.createElement("button");
         // const messagelist = document.querySelectorAll("[id*='chat-messages-']")
@@ -54,7 +54,7 @@ module.exports = class JishoPlugin {
                     let kanji_code = encodeURIComponent(kanji_value)
                     kanji_code = kanji_code.replaceAll("%", "%25", "y")
                     console.log(kanji_code)
-                    let url = `https://corsproxy.io/?https://jisho.org/api/v1/search/words?keyword=${kanji_code}`
+                    let url = `https://corsproxy.io/?url=https://jisho.org/api/v1/search/words?keyword=${kanji_code}`
 
                     fetch(url).then(data => data.json()).then(data => {
                         let result = data.data[0]
@@ -85,9 +85,9 @@ module.exports = class JishoPlugin {
                 }
             });
         });
+        toolbar.insertBefore(myButton, toolbar.childNodes[2])
 
 
-        toolbar.insertBefore(myButton, toolbar.childNodes[4])
 
 
 
